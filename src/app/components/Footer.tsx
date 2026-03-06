@@ -97,8 +97,13 @@ export function Footer() {
             >
               Services
             </h4>
-            <div className="space-y-2.5">
-              {["Lawn Mowing", "Hedge Trimming", "Fertilizing & Aeration", "Fall Cleanup", "Power Washing", "Spring Clean"].map(
+            <div className="space-y-2.5 max-h-[250px] flex flex-col flex-wrap gap-x-8 pr-4">
+              {[
+                "Lawn Care", "Lawn Mowing", "Aeration", "Fertilizing",
+                "Power Raking", "Hedge Trimming", "Pruning", "Gardening",
+                "Spring Cleanup", "Landscaping", "Gutter Cleaning",
+                "Power Washing", "Fall Cleanup", "Junk/Green Waste Removal"
+              ].map(
                 (s) => (
                   <p
                     key={s}
@@ -131,7 +136,8 @@ export function Footer() {
             </h4>
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "778-558-0447", href: "tel:7785580447" },
+                { icon: Phone, label: "+1778 558 0447", href: "tel:+17785580447" },
+                { icon: Globe, label: "info@gogreenmowing.ca", href: "mailto:info@gogreenmowing.ca" },
                 { icon: MapPin, label: "South Surrey, BC" },
                 { icon: Globe, label: "gogreenmowing.ca", href: "https://gogreenmowing.ca" },
               ].map((item, i) => (

@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import { Phone, Leaf, ArrowRight } from "lucide-react";
+import { Phone, ArrowRight, Shield } from "lucide-react";
 import { LimeLabel } from "./LimeLabel";
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { brand, headingStyle, bodyStyle } from "../brand-guidelines";
+import { brand, headingStyle, bodyStyle, labelStyle } from "../brand-guidelines";
 
 export function Hero() {
   return (
@@ -92,6 +92,16 @@ export function Hero() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* WCB Badge */}
+            <div className="mt-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5">
+                <Shield className="w-4 h-4" style={{ color: brand.colors.primary.lime }} />
+                <span style={labelStyle(brand.colors.onDark.text)}>
+                  WCB COVERED & FULLY INSURED
+                </span>
+              </div>
             </div>
           </motion.div>
 

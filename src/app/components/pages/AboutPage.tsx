@@ -223,6 +223,80 @@ export function AboutPage() {
         </div>
       </section>
 
+      {/* Meet the Owner */}
+      <section className="py-16 lg:py-24" style={{ backgroundColor: "#FDFCFA" }}>
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center bg-[#1C3A1C] p-8 lg:p-16 rounded-2xl text-white">
+            <StaggerChild>
+              <h2
+                className="mb-6"
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "clamp(2rem, 4vw, 3rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: "#FFFFFF",
+                }}
+              >
+                Hello Neighbour!
+              </h2>
+              <p
+                className="mb-6 text-lg"
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  lineHeight: 1.8,
+                  color: "rgba(255,255,255,0.9)",
+                }}
+              >
+                I'm <strong>Raminder Singh</strong>, your local Go Green Mowing specialist working in your neighbourhood every day.
+              </p>
+              <p
+                className="mb-8 text-lg"
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  lineHeight: 1.8,
+                  color: "rgba(255,255,255,0.9)",
+                }}
+              >
+                I already serve many of your neighbours and I'd love the opportunity to give you a free quote!
+              </p>
+
+              <div className="mt-8">
+                <p
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "2rem",
+                    fontWeight: 700,
+                    color: "#D4A843",
+                  }}
+                >
+                  +1778 558 0447
+                </p>
+                <p
+                  className="mt-2"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.7)",
+                  }}
+                >
+                  Or book online at gogreenmowing.ca
+                </p>
+              </div>
+            </StaggerChild>
+
+            {/* Owner ImagePlaceholder / Van */}
+            <StaggerChild className="relative h-[400px] w-full lg:h-full rounded-xl overflow-hidden shadow-2xl">
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1592424005615-5c123ea39be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYXJkZW5lciUyMHBvcnRyYWl0fGVufDB8fHx8MTcyNDA5NTEzMnww&ixlib=rb-4.0.3&q=80&w=1080"
+                alt="Raminder Singh - Owner of Go Green Mowing"
+                className="w-full h-[400px] lg:h-[500px] object-cover"
+              />
+            </StaggerChild>
+          </div>
+        </div>
+      </section>
+
       {/* Our Values */}
       <section className="py-24 lg:py-32" style={{ backgroundColor: "#F7F4EE" }}>
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
@@ -328,9 +402,8 @@ export function AboutPage() {
                     <div className={`${i % 2 === 1 ? "lg:order-1 lg:text-right" : ""} relative`}>
                       {/* Dot on timeline */}
                       <div
-                        className={`hidden lg:block absolute top-3 ${
-                          i % 2 === 1 ? "right-0 translate-x-[calc(50%+2rem)]" : "left-0 -translate-x-[calc(50%+2rem)]"
-                        } w-3 h-3 rounded-full border-2`}
+                        className={`hidden lg:block absolute top-3 ${i % 2 === 1 ? "right-0 translate-x-[calc(50%+2rem)]" : "left-0 -translate-x-[calc(50%+2rem)]"
+                          } w-3 h-3 rounded-full border-2`}
                         style={{ borderColor: "#7AB648", backgroundColor: "#1C3A1C" }}
                       />
                       <h3

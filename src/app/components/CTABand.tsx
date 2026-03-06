@@ -11,11 +11,11 @@ export function CTABand() {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           {/* Text */}
           <div className="max-w-xl">
-            <LimeLabel text="Get Started Today" />
+            <LimeLabel text="CALL TODAY FOR YOUR FREE QUOTE" />
             <h2
               style={headingStyle("h2", brand.colors.primary.forest)}
             >
-              Ready For A Greener, More <em>Beautiful Yard?</em>
+              BOOK YOUR SPOT <em>NOW!</em>
             </h2>
           </div>
 

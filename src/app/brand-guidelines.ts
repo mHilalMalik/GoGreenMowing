@@ -167,8 +167,9 @@ export const brand = {
     business: {
         name: "Go Green Mowing",
         tagline: "Eco-Friendly Lawn Care You Can Trust",
-        phone: "778-558-0447",
-        phoneHref: "tel:7785580447",
+        phone: "+1778 558 0447",
+        phoneHref: "tel:+17785580447",
+        email: "info@gogreenmowing.ca",
         location: "South Surrey, BC, Canada",
         website: "gogreenmowing.ca",
         hours: "Monday – Saturday, 7am – 7pm",
