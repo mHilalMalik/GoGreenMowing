@@ -5,6 +5,8 @@ import { AboutPage } from "./components/pages/AboutPage";
 import { ServicesPage } from "./components/pages/ServicesPage";
 import { OurWorkPage } from "./components/pages/OurWorkPage";
 import { ContactPage } from "./components/pages/ContactPage";
+import { BlogPage } from "./components/pages/BlogPage";
+import { BlogPostPage } from "./components/pages/BlogPostPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ export const router = createBrowserRouter([
       { path: "services", Component: ServicesPage },
       { path: "our-work", Component: OurWorkPage },
       { path: "contact", Component: ContactPage },
+      { path: "blog", Component: BlogPage },
+      { path: "blog/:slug", Component: BlogPostPage },
     ],
   },
 ]);

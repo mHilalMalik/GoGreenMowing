@@ -1,6 +1,19 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* ═══ Go Green Mowing Brand Tokens ═══ */
+  --brand-forest: #1C3A1C;
+  --brand-lime: #7AB648;
+  --brand-emerald: #2D5A2D;
+  --brand-cream: #FDFCFA;
+  --brand-warm: #F7F4EE;
+  --brand-text: #1A1A18;
+  --brand-text-muted: #4A4A44;
+  --brand-gold: #D4A843;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* ═══ Theme Tokens ═══ */
   --font-size: 16px;
   --background: #FDFCFA;
   --foreground: #1A1A18;

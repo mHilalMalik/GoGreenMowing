@@ -1,4 +1,4 @@
-import { Leaf, Phone, MapPin, Globe, Instagram, Facebook } from "lucide-react";
+import { Phone, MapPin, Globe, Instagram, Facebook } from "lucide-react";
 import { Link } from "react-router";
 
 export function Footer() {
@@ -9,13 +9,11 @@ export function Footer() {
           {/* Col 1 - Logo */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <Leaf className="w-4 h-4" style={{ color: "#7AB648" }} />
-              <span
-                className="text-white"
-                style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", fontWeight: 600 }}
-              >
-                Go Green Mowing
-              </span>
+              <img
+                src="/logo.png"
+                alt="Go Green Mowing"
+                className="h-10 w-auto"
+              />
             </div>
             <p
               className="mb-6"
@@ -29,14 +27,19 @@ export function Footer() {
               Eco-friendly lawn care you can trust. Proudly serving South Surrey and Metro Vancouver since 2014.
             </p>
             <div className="flex gap-2">
-              {[Instagram, Facebook, Globe].map((Icon, i) => (
+              {[
+                { Icon: Instagram, label: "Follow us on Instagram" },
+                { Icon: Facebook, label: "Follow us on Facebook" },
+                { Icon: Globe, label: "Visit our website" },
+              ].map((item, i) => (
                 <a
                   key={i}
                   href="#"
+                  aria-label={item.label}
                   className="w-[34px] h-[34px] border flex items-center justify-center transition-colors hover:border-[#7AB648] hover:text-[#7AB648]"
                   style={{ borderColor: "rgba(255,255,255,0.15)" }}
                 >
-                  <Icon className="w-3.5 h-3.5 text-white" />
+                  <item.Icon className="w-3.5 h-3.5 text-white" />
                 </a>
               ))}
             </div>
@@ -184,7 +187,7 @@ export function Footer() {
             color: "rgba(255,255,255,0.25)",
           }}
         >
-          &copy; 2025 Go Green Mowing. All rights reserved.
+          &copy; 2026 Go Green Mowing. All rights reserved.
         </p>
       </div>
     </footer>

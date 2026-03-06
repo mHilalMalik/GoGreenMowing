@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { LimeLabel } from "./LimeLabel";
 import { AnimatedSection, StaggerChild } from "./AnimatedSection";
 import { Leaf, Scissors, Sprout, Wind, Droplets, Brush, ArrowRight } from "lucide-react";
@@ -94,7 +95,8 @@ export function ServicesSection() {
                   {service.desc}
                 </p>
 
-                <span
+                <Link
+                  to="/services"
                   className="inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -104,7 +106,7 @@ export function ServicesSection() {
                   }}
                 >
                   Learn more <ArrowRight className="w-3 h-3" />
-                </span>
+                </Link>
               </div>
             </StaggerChild>
           ))}

@@ -4,6 +4,9 @@ import { AnimatedSection, StaggerChild } from "../AnimatedSection";
 import { CTABand } from "../CTABand";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { Leaf, Scissors, Sprout, Wind, Droplets, Brush, ArrowRight } from "lucide-react";
+import { SEOHead } from "../SEOHead";
+import { JsonLd } from "../JsonLd";
+import { serviceSchemas, breadcrumbSchema } from "../schema";
 
 const services = [
   {
@@ -47,6 +50,21 @@ const services = [
 export function ServicesPage() {
   return (
     <>
+      <SEOHead
+        title="Lawn Care Services | Go Green Mowing – South Surrey, BC"
+        description="Professional lawn mowing, hedge trimming, aeration, fertilizing, power washing, and seasonal cleanups. Eco-friendly lawn care in South Surrey and Metro Vancouver."
+        canonical="/services"
+      />
+      <JsonLd
+        data={[
+          ...serviceSchemas,
+          breadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Services", url: "/services" },
+          ]),
+        ]}
+      />
+
       {/* Hero Banner */}
       <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 lg:py-28">
@@ -96,9 +114,8 @@ export function ServicesPage() {
             {services.map((service, i) => (
               <StaggerChild key={service.name} delay={i * 0.05}>
                 <div
-                  className={`grid lg:grid-cols-2 gap-0 overflow-hidden border transition-all hover:shadow-lg ${
-                    i % 2 === 1 ? "lg:direction-rtl" : ""
-                  }`}
+                  className={`grid lg:grid-cols-2 gap-0 overflow-hidden border transition-all hover:shadow-lg ${i % 2 === 1 ? "lg:direction-rtl" : ""
+                    }`}
                   style={{ borderColor: "rgba(0,0,0,0.06)", borderRadius: "4px" }}
                 >
                   <div className={`${i % 2 === 1 ? "lg:order-2" : ""}`}>

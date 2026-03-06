@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
-import { Menu, X, Leaf, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
   { label: "Our Work", path: "/our-work" },
+  { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -34,13 +35,11 @@ export function Navbar() {
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
-            <Leaf className="w-5 h-5" style={{ color: "#7AB648" }} />
-            <span
-              className="text-white"
-              style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem", fontWeight: 600 }}
-            >
-              Go Green Mowing
-            </span>
+            <img
+              src="/logo.png"
+              alt="Go Green Mowing"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -95,6 +94,8 @@ export function Navbar() {
           <button
             className="lg:hidden text-white p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

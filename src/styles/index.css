@@ -1,3 +1,14 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Smooth scrolling, respecting user preferences */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
