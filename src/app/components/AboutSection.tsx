@@ -24,16 +24,16 @@ export function AboutSection() {
           <StaggerChild delay={0.1} className="relative">
             <div className="relative">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1759497860802-9cba5782b455?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBnYXJkZW5lciUyMHdvcmtpbmclMjBvdXRkb29ycyUyMHBvcnRyYWl0fGVufDF8fHx8MTc3Mjc3OTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Professional gardener working outdoors"
+                src="/images/owner-portrait.png"
+                alt="Raminder Singh - Owner of Go Green Mowing"
                 className="w-full h-[500px] lg:h-[580px] object-cover"
               />
               {/* Overlapping small photo */}
               <div className="absolute -bottom-6 -right-4 lg:-right-8 w-40 h-40 lg:w-52 lg:h-52 border-[6px] border-white shadow-lg">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1705521680204-0f156bb0660e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYXJkZW4lMjBjbG9zZS11cCUyMHBsYW50cyUyMGVjby1mcmllbmRseXxlbnwxfHx8fDE3NzI3Nzk1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Close-up garden detail"
-                  className="w-full h-full object-cover"
+                  src="/images/mascot.png"
+                  alt="Go Green Mowing Mascot"
+                  className="w-full h-full object-cover object-top bg-white p-2"
                 />
               </div>
               {/* Experience badge */}
@@ -50,7 +50,7 @@ export function AboutSection() {
                     lineHeight: 1,
                   }}
                 >
-                  10+
+                  2
                 </p>
                 <p
                   style={{

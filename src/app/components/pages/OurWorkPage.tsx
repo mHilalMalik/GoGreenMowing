@@ -5,6 +5,7 @@ import { AnimatedSection, StaggerChild } from "../AnimatedSection";
 import { CTABand } from "../CTABand";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { ArrowRight } from "lucide-react";
+import { SEOHead } from "../SEOHead";
 
 const categories = ["All", "Residential", "Commercial", "Seasonal", "Luxury"];
 
@@ -93,6 +94,11 @@ export function OurWorkPage() {
 
   return (
     <>
+      <SEOHead
+        title="Our Work | Go Green Mowing Portfolio"
+        description="View our portfolio of residential and commercial lawn care projects across South Surrey and Metro Vancouver. See the difference eco-friendly care makes."
+        canonical="/our-work"
+      />
       {/* Hero Banner */}
       <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 lg:py-28">
@@ -252,9 +258,8 @@ export function OurWorkPage() {
               ].map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`text-center py-10 px-6 ${
-                    i < 3 ? "border-r" : ""
-                  }`}
+                  className={`text-center py-10 px-6 ${i < 3 ? "border-r" : ""
+                    }`}
                   style={{ borderColor: "rgba(255,255,255,0.08)" }}
                 >
                   <p

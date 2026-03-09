@@ -105,21 +105,27 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Right - Photo */}
           <motion.div
             className="relative hidden lg:block"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1747548747539-f523abfe6982?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXNoJTIwZ3JlZW4lMjBsYXduJTIwbW93ZWQlMjBzdHJpcGVzJTIwZ29sZGVuJTIwaG91cnxlbnwxfHx8fDE3NzI3Nzk1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Lush green mowed lawn with stripes in golden hour"
-              className="w-full h-[560px] object-cover"
-            />
+            <div className="relative w-full h-[560px] flex items-center justify-center pt-10">
+              {/* Soft glow behind mascot */}
+              <div
+                className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[80px] opacity-40 mix-blend-screen"
+                style={{ backgroundColor: brand.colors.primary.lime }}
+              />
+              <ImageWithFallback
+                src="/images/mascot.png"
+                alt="Go Green Mowing Friendly Mascot"
+                className="w-[85%] h-auto max-h-full object-contain relative z-10 drop-shadow-2xl"
+              />
+            </div>
             {/* Availability badge */}
             <div
-              className="absolute bottom-6 right-6 px-5 py-3 shadow-lg flex items-center gap-2"
+              className="absolute bottom-6 right-6 px-5 py-3 shadow-lg flex items-center gap-2 z-20"
               style={{ backgroundColor: brand.colors.background.white }}
             >
               <span

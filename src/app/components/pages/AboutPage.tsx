@@ -4,6 +4,9 @@ import { LimeLabel } from "../LimeLabel";
 import { AnimatedSection, StaggerChild } from "../AnimatedSection";
 import { CTABand } from "../CTABand";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { SEOHead } from "../SEOHead";
+import { JsonLd } from "../JsonLd";
+import { organizationSchema } from "../schema";
 
 const values = [
   {
@@ -29,23 +32,24 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2014", title: "Founded in South Surrey", desc: "Started with a single mower and a vision for eco-friendly lawn care in our neighborhood." },
-  { year: "2016", title: "100 Clients Milestone", desc: "Word of mouth spread quickly as our commitment to quality earned loyal customers." },
-  { year: "2019", title: "Expanded Services", desc: "Added power washing, aeration, and full-season programs to serve clients year-round." },
-  { year: "2022", title: "500+ Properties Maintained", desc: "Became one of the most trusted lawn care providers across South Surrey and Metro Vancouver." },
-  { year: "2024", title: "10 Years Strong", desc: "A decade of transforming outdoor spaces with the same passion and integrity we started with." },
+  { year: "2024", title: "Founded in South Surrey", desc: "Started with a single mower and a vision for eco-friendly, reliable lawn care in our neighborhood." },
+  { year: "2025", title: "Growing the Family", desc: "Word of mouth spread quickly as our commitment to quality earned us over 100 loyal customers." },
+  { year: "2026", title: "Expanded Services", desc: "Added full-season programs, power washing, and landscaping to serve clients year-round." },
 ];
 
 const team = [
-  { name: "Jamie Holt", role: "Founder & Lead Technician", initials: "JH" },
-  { name: "Marcus Chen", role: "Operations Manager", initials: "MC" },
-  { name: "Priya Sharma", role: "Client Relations", initials: "PS" },
-  { name: "Ryan Torres", role: "Senior Landscaper", initials: "RT" },
+  { name: "Rammy", role: "Owner & Lawn Care Specialist", initials: "R" },
 ];
 
 export function AboutPage() {
   return (
     <>
+      <SEOHead
+        title="About Go Green Mowing | Trusted Lawn Care in Surrey & Metro Vancouver"
+        description="Learn about Go Green Mowing's journey. With over 2 years of experience, we provide reliable, eco-friendly lawn care services in South Surrey and surrounding areas."
+        canonical="/about"
+      />
+      <JsonLd data={organizationSchema} />
       {/* Hero Banner */}
       <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 lg:py-28">
@@ -82,7 +86,7 @@ export function AboutPage() {
                 color: "rgba(255,255,255,0.55)",
               }}
             >
-              Over a decade of eco-friendly lawn care excellence in South Surrey and Metro Vancouver. Meet the team and values behind the work.
+              Over 2 years of eco-friendly lawn care excellence in South Surrey and Metro Vancouver. Meet the team and values behind the work.
             </p>
           </div>
         </div>
@@ -96,15 +100,15 @@ export function AboutPage() {
             <StaggerChild delay={0.1} className="relative">
               <div className="relative">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1759497860802-9cba5782b455?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBnYXJkZW5lciUyMHdvcmtpbmclMjBvdXRkb29ycyUyMHBvcnRyYWl0fGVufDF8fHx8MTc3Mjc3OTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Professional gardener working outdoors"
+                  src="/images/owner-portrait.png"
+                  alt="Raminder Singh - Owner of Go Green Mowing"
                   className="w-full h-[500px] lg:h-[580px] object-cover"
                 />
                 <div className="absolute -bottom-6 -right-4 lg:-right-8 w-40 h-40 lg:w-52 lg:h-52 border-[6px] border-white shadow-lg">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1687517133266-7d952efc3362?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMGdyZWVuJTIwZW52aXJvbm1lbnQlMjBuYXR1cmV8ZW58MXx8fHwxNzcyNzgwMjY1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                    alt="Sustainable green environment"
-                    className="w-full h-full object-cover"
+                    src="/images/mascot.png"
+                    alt="Go Green Mowing Mascot"
+                    className="w-full h-full object-contain bg-white p-2"
                   />
                 </div>
                 <div
@@ -120,7 +124,7 @@ export function AboutPage() {
                       lineHeight: 1,
                     }}
                   >
-                    10+
+                    2
                   </p>
                   <p
                     style={{
@@ -161,7 +165,7 @@ export function AboutPage() {
                   color: "#4A4A44",
                 }}
               >
-                Go Green Mowing was founded in 2014 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has grown into a trusted team of professionals serving hundreds of properties across Metro Vancouver.
+                Go Green Mowing was founded in 2024 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has quickly grown into a trusted partner for over a hundred homeowners across Metro Vancouver.
               </p>
               <p
                 className="mb-4"
@@ -187,9 +191,9 @@ export function AboutPage() {
               </p>
               <div className="grid grid-cols-3 gap-6">
                 {[
-                  { num: "500+", label: "Lawns Maintained" },
-                  { num: "10+", label: "Years In Business" },
-                  { num: "4.9", label: "Avg. Star Rating" },
+                  { num: "150+", label: "Lawns Maintained" },
+                  { num: "2", label: "Years In Business" },
+                  { num: "5★", label: "Google Rating" },
                 ].map((stat) => (
                   <div key={stat.label}>
                     <p
@@ -248,7 +252,7 @@ export function AboutPage() {
                   color: "rgba(255,255,255,0.9)",
                 }}
               >
-                I'm <strong>Raminder Singh</strong>, your local Go Green Mowing specialist working in your neighbourhood every day.
+                Hi there! I'm <strong>Rammy</strong>, your local Go Green Mowing owner and lawn care specialist. You've probably seen me working hard in your neighbourhood!
               </p>
               <p
                 className="mb-8 text-lg"
@@ -258,7 +262,7 @@ export function AboutPage() {
                   color: "rgba(255,255,255,0.9)",
                 }}
               >
-                I already serve many of your neighbours and I'd love the opportunity to give you a free quote!
+                My goal is simple: to give you a lawn you can be proud of, without the stress. We treat every yard like our own, using eco-friendly products that are safe for your family and pets. I already serve many of your neighbours, and I'd love to show you the Go Green difference!
               </p>
 
               <div className="mt-8">
@@ -288,7 +292,7 @@ export function AboutPage() {
             {/* Owner ImagePlaceholder / Van */}
             <StaggerChild className="relative h-[400px] w-full lg:h-full rounded-xl overflow-hidden shadow-2xl">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1592424005615-5c123ea39be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYXJkZW5lciUyMHBvcnRyYWl0fGVufDB8fHx8MTcyNDA5NTEzMnww&ixlib=rb-4.0.3&q=80&w=1080"
+                src="/images/owner-portrait.png"
                 alt="Raminder Singh - Owner of Go Green Mowing"
                 className="w-full h-[400px] lg:h-[500px] object-cover"
               />
@@ -370,7 +374,7 @@ export function AboutPage() {
                 color: "white",
               }}
             >
-              A Decade Of Growth, One <em>Lawn At A Time</em>
+              A Journey Of Growth, One <em>Lawn At A Time</em>
             </h2>
           </AnimatedSection>
 
@@ -593,8 +597,8 @@ export function AboutPage() {
 
             <StaggerChild delay={0.3} className="relative">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1767328796803-756a72608d5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXduJTIwY2FyZSUyMHByb2Zlc3Npb25hbCUyMG91dGRvb3IlMjBncmVlbnxlbnwxfHx8fDE3NzI3Nzk1NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Professional lawn care"
+                src="/images/owner-portrait.png"
+                alt="Professional lawn care by Go Green Mowing"
                 className="w-full h-[480px] lg:h-[560px] object-cover"
               />
               <div
@@ -627,7 +631,7 @@ export function AboutPage() {
                     fontWeight: 500,
                   }}
                 >
-                  4.9/5 from 120+ reviews
+                  Rated 5 Stars on Google
                 </p>
               </div>
             </StaggerChild>

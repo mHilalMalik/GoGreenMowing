@@ -93,7 +93,7 @@ export function WhyChooseUs() {
           {/* Right - Photo */}
           <StaggerChild delay={0.3} className="relative">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1767328796803-756a72608d5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXduJTIwY2FyZSUyMHByb2Zlc3Npb25hbCUyMG91dGRvb3IlMjBncmVlbnxlbnwxfHx8fDE3NzI3Nzk1NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src="/images/owner-portrait.png"
               alt="Lawn care professional at work"
               className="w-full h-[520px] lg:h-[620px] object-cover"
             />
@@ -128,7 +128,7 @@ export function WhyChooseUs() {
                   fontWeight: 500,
                 }}
               >
-                4.9/5 from 120+ reviews
+                Rated 5 Stars on Google
               </p>
             </div>
           </StaggerChild>
