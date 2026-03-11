@@ -24,7 +24,7 @@ export function Footer() {
                 color: "rgba(255,255,255,0.4)",
               }}
             >
-              Eco-friendly lawn care you can trust. Proudly serving South Surrey and Metro Vancouver since 2015.
+              Eco-friendly lawn care you can trust. Proudly serving South Surrey and Metro Vancouver since 2025.
             </p>
             <div className="flex gap-2">
               {[

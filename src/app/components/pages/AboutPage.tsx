@@ -138,7 +138,7 @@ export function AboutPage() {
                   color: "#4A4A44",
                 }}
               >
-                Go Green Mowing was founded in 2015 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has quickly grown into a trusted partner for over a hundred homeowners across Metro Vancouver.
+                Go Green Mowing was founded in 2025 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has quickly grown into a trusted partner for over a hundred homeowners across Metro Vancouver.
               </p>
               <p
                 className="mb-4"
