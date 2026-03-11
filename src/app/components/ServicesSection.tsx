@@ -10,23 +10,23 @@ const serviceCategories = [
   {
     category: "Lawn Care Services",
     services: [
-      { slug: "lawn-mowing", icon: Leaf, name: "Lawn Mowing", img: "/images/services/lawn-mowing.png" },
-      { slug: "aeration", icon: Wind, name: "Aeration", img: "/images/services/fertilizer.png" },
-      { slug: "fertilizing", icon: Sprout, name: "Fertilizing", img: "/images/services/fertilizer.png" },
-      { slug: "power-raking", icon: Pipette, name: "Power Raking", img: "/images/services/seasonal-cleanup.png" },
-      { slug: "hedge-trimming", icon: Scissors, name: "Hedge Trimming", img: "/images/services/hedge-trimming.png" },
-      { slug: "pruning", icon: TreeDeciduous, name: "Pruning", img: "/images/services/hedge-trimming.png" },
-      { slug: "gardening", icon: Flower2, name: "Gardening", img: "/images/services/seasonal-cleanup.png" },
-      { slug: "spring-fall-cleanup", icon: Wind, name: "Spring & Fall Cleanup", img: "/images/services/seasonal-cleanup.png" },
-      { slug: "landscaping", icon: Shovel, name: "Landscaping", img: "/images/services/lawn-mowing.png" },
-      { slug: "gutter-cleaning", icon: Droplets, name: "Gutter Cleaning", img: "/images/services/power-washing.png" },
-      { slug: "power-washing", icon: Droplets, name: "Power Washing", img: "/images/services/power-washing.png" },
+      { slug: "lawn-mowing", icon: Leaf, name: "Lawn Mowing", img: "/images/services/lawn_mowing_service.png" },
+      { slug: "aeration", icon: Wind, name: "Aeration", img: "/images/services/aeration_service.png" },
+      { slug: "fertilizing", icon: Sprout, name: "Fertilizing", img: "/images/services/fertilizing_service.png" },
+      { slug: "power-raking", icon: Pipette, name: "Power Raking", img: "/images/services/power_raking_service.png" },
+      { slug: "hedge-trimming", icon: Scissors, name: "Hedge Trimming", img: "/images/services/hedge_trimming_service.png" },
+      { slug: "pruning", icon: TreeDeciduous, name: "Pruning", img: "/images/services/pruning_service.png" },
+      { slug: "gardening", icon: Flower2, name: "Gardening", img: "/images/services/gardening_service.png" },
+      { slug: "spring-fall-cleanup", icon: Wind, name: "Spring & Fall Cleanup", img: "/images/services/seasonal_cleanup_service.png" },
+      { slug: "landscaping", icon: Shovel, name: "Landscaping", img: "/images/services/landscaping_service.png" },
+      { slug: "gutter-cleaning", icon: Droplets, name: "Gutter Cleaning", img: "/images/services/gutter_cleaning_service.png" },
+      { slug: "power-washing", icon: Droplets, name: "Power Washing", img: "/images/services/power_washing_service.png" },
     ],
   },
   {
     category: "Junk Removal Services",
     services: [
-      { slug: "green-waste-removal", icon: Trash2, name: "Green Waste Removal", img: "/images/services/seasonal-cleanup.png" },
+      { slug: "green-waste-removal", icon: Trash2, name: "Green Waste Removal", img: "/images/services/green_waste_removal_service.png" },
     ],
   },
 ];
@@ -116,11 +116,6 @@ export function ServicesSection() {
                           style={{ color: "rgba(122, 182, 72, 0.7)" }}
                         />
                       </div>
-                      <img
-                        src={service.img}
-                        alt={service.name}
-                        className="w-10 h-10 object-cover rounded drop-shadow bg-white/5"
-                      />
                     </div>
 
                     <h4

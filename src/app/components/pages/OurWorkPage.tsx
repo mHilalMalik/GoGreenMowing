@@ -254,7 +254,7 @@ export function OurWorkPage() {
                 { num: "500+", label: "Properties Maintained" },
                 { num: "12", label: "Active Projects" },
                 { num: "98%", label: "Client Retention Rate" },
-                { num: "10+", label: "Years Of Experience" },
+                { num: "1", label: "Year Of Experience" },
               ].map((stat, i) => (
                 <div
                   key={stat.label}

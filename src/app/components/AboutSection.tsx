@@ -36,34 +36,6 @@ export function AboutSection() {
                   className="w-full h-full object-cover object-top bg-white p-2"
                 />
               </div>
-              {/* Experience badge */}
-              <div
-                className="absolute top-6 right-6 px-5 py-3 shadow-lg"
-                style={{ backgroundColor: "#7AB648" }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontWeight: 700,
-                    fontSize: "1.5rem",
-                    color: "white",
-                    lineHeight: 1,
-                  }}
-                >
-                  2
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.1em",
-                    color: "rgba(255,255,255,0.85)",
-                    textTransform: "uppercase" as const,
-                  }}
-                >
-                  Years Experience
-                </p>
-              </div>
             </div>
           </StaggerChild>
 

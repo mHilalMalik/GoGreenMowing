@@ -38,7 +38,7 @@ const milestones = [
 ];
 
 const team = [
-  { name: "Rammy", role: "Owner & Lawn Care Specialist", initials: "R" },
+  { name: "Rammy", role: "Owner & Lawn Care Specialist", image: "/images/owner-portrait.png", address: "1959-165A Street, Surrey, BC" },
 ];
 
 export function AboutPage() {
@@ -46,7 +46,7 @@ export function AboutPage() {
     <>
       <SEOHead
         title="About Go Green Mowing | Trusted Lawn Care in Surrey & Metro Vancouver"
-        description="Learn about Go Green Mowing's journey. With over 2 years of experience, we provide reliable, eco-friendly lawn care services in South Surrey and surrounding areas."
+        description="Learn about Go Green Mowing's journey. Helping our neighborhood take care of their lawn, we provide reliable, eco-friendly lawn care services in South Surrey and surrounding areas."
         canonical="/about"
       />
       <JsonLd data={organizationSchema} />
@@ -86,7 +86,7 @@ export function AboutPage() {
                 color: "rgba(255,255,255,0.55)",
               }}
             >
-              Over 2 years of eco-friendly lawn care excellence in South Surrey and Metro Vancouver. Meet the team and values behind the work.
+              Helping our neighborhood take care of their lawns in South Surrey and Metro Vancouver. Meet the team and values behind the work.
             </p>
           </div>
         </div>
@@ -110,33 +110,6 @@ export function AboutPage() {
                     alt="Go Green Mowing Mascot"
                     className="w-full h-full object-contain bg-white p-2"
                   />
-                </div>
-                <div
-                  className="absolute top-6 right-6 px-5 py-3 shadow-lg"
-                  style={{ backgroundColor: "#7AB648" }}
-                >
-                  <p
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: 700,
-                      fontSize: "1.5rem",
-                      color: "white",
-                      lineHeight: 1,
-                    }}
-                  >
-                    2
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.1em",
-                      color: "rgba(255,255,255,0.85)",
-                      textTransform: "uppercase" as const,
-                    }}
-                  >
-                    Years Experience
-                  </p>
                 </div>
               </div>
             </StaggerChild>
@@ -165,7 +138,7 @@ export function AboutPage() {
                   color: "#4A4A44",
                 }}
               >
-                Go Green Mowing was founded in 2024 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has quickly grown into a trusted partner for over a hundred homeowners across Metro Vancouver.
+                Go Green Mowing was founded in 2015 with a simple but powerful idea: lawn care should be beautiful, reliable, and environmentally responsible. What started as a one-person operation in South Surrey has quickly grown into a trusted partner for over a hundred homeowners across Metro Vancouver.
               </p>
               <p
                 className="mb-4"
@@ -192,7 +165,7 @@ export function AboutPage() {
               <div className="grid grid-cols-3 gap-6">
                 {[
                   { num: "150+", label: "Lawns Maintained" },
-                  { num: "2", label: "Years In Business" },
+                  { num: "1", label: "Year In Business" },
                   { num: "5★", label: "Google Rating" },
                 ].map((stat) => (
                   <div key={stat.label}>
@@ -464,7 +437,7 @@ export function AboutPage() {
                 color: "#4A4A44",
               }}
             >
-              Our passionate, skilled team brings years of experience and a genuine love for the outdoors to every property we maintain.
+              Our passionate, skilled team brings a genuine love for the outdoors to every property we maintain.
             </p>
           </AnimatedSection>
 
@@ -476,20 +449,9 @@ export function AboutPage() {
                   style={{ borderColor: "rgba(0,0,0,0.06)", borderRadius: "4px" }}
                 >
                   <div
-                    className="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center transition-colors duration-300"
-                    style={{ backgroundColor: "rgba(122, 182, 72, 0.12)" }}
+                    className="w-24 h-24 rounded-full mx-auto mb-5 overflow-hidden transition-colors duration-300"
                   >
-                    <span
-                      className="transition-colors duration-300"
-                      style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontWeight: 700,
-                        fontSize: "1.3rem",
-                        color: "#2D5A2D",
-                      }}
-                    >
-                      {member.initials}
-                    </span>
+                    <ImageWithFallback src={member.image} alt={member.name} className="w-full h-full object-cover" />
                   </div>
                   <h4
                     className="mb-1"
@@ -503,6 +465,7 @@ export function AboutPage() {
                     {member.name}
                   </h4>
                   <p
+                    className="mb-2"
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.78rem",
@@ -511,6 +474,15 @@ export function AboutPage() {
                     }}
                   >
                     {member.role}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.75rem",
+                      color: "#4A4A44",
+                    }}
+                  >
+                    {member.address}
                   </p>
                 </div>
               </StaggerChild>

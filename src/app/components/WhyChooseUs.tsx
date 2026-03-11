@@ -4,7 +4,7 @@ import { AnimatedSection, StaggerChild } from "./AnimatedSection";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const pillars = [
-  { num: "01", title: "Expertise & Experience", desc: "Over a decade of professional lawn care across South Surrey and Metro Vancouver." },
+  { num: "01", title: "Expertise & Experience", desc: "Expert professional lawn care across South Surrey and Metro Vancouver." },
   { num: "02", title: "Quality & Reliability", desc: "Consistent, punctual service with meticulous attention to every detail." },
   { num: "03", title: "Eco-Friendly Practices", desc: "Sustainable products and methods that protect both your lawn and the environment." },
   { num: "04", title: "Satisfaction Guaranteed", desc: "We stand behind every project with our commitment to your complete satisfaction." },
