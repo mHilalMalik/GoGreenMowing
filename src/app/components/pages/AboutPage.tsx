@@ -32,9 +32,8 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2024", title: "Founded in South Surrey", desc: "Started with a single mower and a vision for eco-friendly, reliable lawn care in our neighborhood." },
-  { year: "2025", title: "Growing the Family", desc: "Word of mouth spread quickly as our commitment to quality earned us over 100 loyal customers." },
-  { year: "2026", title: "Expanded Services", desc: "Added full-season programs, power washing, and landscaping to serve clients year-round." },
+  { year: "2025", title: "Founded in South Surrey", desc: "Started with a single mower and a vision for eco-friendly, reliable lawn care in our neighborhood." },
+  { year: "2026", title: "Growing the Family", desc: "Word of mouth spread quickly as our commitment to quality earned us over 100 loyal customers and we expanded our services." },
 ];
 
 const team = [
@@ -164,7 +163,7 @@ export function AboutPage() {
               </p>
               <div className="grid grid-cols-3 gap-6">
                 {[
-                  { num: "150+", label: "Lawns Maintained" },
+                  { num: "500+", label: "Lawns Maintained" },
                   { num: "1", label: "Year In Business" },
                   { num: "5★", label: "Google Rating" },
                 ].map((stat) => (

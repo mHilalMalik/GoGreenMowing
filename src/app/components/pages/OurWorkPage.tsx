@@ -227,17 +227,6 @@ export function OurWorkPage() {
                     >
                       {project.desc}
                     </p>
-                    <span
-                      className="inline-flex items-center gap-1 transition-colors hover:text-[#2D5A2D]"
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "0.78rem",
-                        fontWeight: 600,
-                        color: "#7AB648",
-                      }}
-                    >
-                      View Details <ArrowRight className="w-3 h-3" />
-                    </span>
                   </div>
                 </div>
               </StaggerChild>
