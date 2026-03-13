@@ -102,7 +102,7 @@ const serviceCategories = [
         icon: Trash2,
         name: "Green Waste Removal",
         desc: "Eco-friendly removal and disposal of green waste, yard trimmings, branches, and organic debris. We handle the heavy lifting so you don't have to.",
-        img: "/images/services/green_waste_removal_service.png",
+        img: "/images/services/green_waste_removal_service_v2.png",
       },
     ],
   },

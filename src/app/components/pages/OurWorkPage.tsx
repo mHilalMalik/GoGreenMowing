@@ -240,7 +240,7 @@ export function OurWorkPage() {
               style={{ backgroundColor: "#1C3A1C" }}
             >
               {[
-                { num: "500+", label: "Properties Maintained" },
+                { num: "100+", label: "Properties Maintained" },
                 { num: "12", label: "Active Projects" },
                 { num: "98%", label: "Client Retention Rate" },
                 { num: "1", label: "Year Of Experience" },

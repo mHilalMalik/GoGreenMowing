@@ -2,7 +2,7 @@ import { Leaf, Star, MapPin, Recycle } from "lucide-react";
 import { AnimatedSection } from "./AnimatedSection";
 
 const stats = [
-  { icon: Leaf, label: "500+ Lawns Maintained", sub: "And counting" },
+  { icon: Leaf, label: "100+ Lawns Maintained", sub: "And counting" },
   { icon: Star, label: "5-Star Rated", sub: "On Google Reviews" },
   { icon: MapPin, label: "Locally Owned", sub: "South Surrey, BC" },
   { icon: Recycle, label: "100% Eco-Friendly", sub: "Sustainable practices" },

@@ -60,7 +60,7 @@ export function Hero() {
               style={{ borderColor: brand.colors.onDark.border }}
             >
               {[
-                { value: "500+", label: "Lawns Maintained" },
+                { value: "100+", label: "Lawns Maintained" },
                 { value: "5★", label: "Google Rating" },
                 { value: "100%", label: "Eco-Friendly" },
               ].map((stat) => (

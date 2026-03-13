@@ -26,7 +26,7 @@ const serviceCategories = [
   {
     category: "Junk Removal Services",
     services: [
-      { slug: "green-waste-removal", icon: Trash2, name: "Green Waste Removal", img: "/images/services/green_waste_removal_service.png" },
+      { slug: "green-waste-removal", icon: Trash2, name: "Green Waste Removal", img: "/images/services/green_waste_removal_service_v2.png" },
     ],
   },
 ];

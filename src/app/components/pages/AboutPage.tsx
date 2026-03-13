@@ -163,7 +163,7 @@ export function AboutPage() {
               </p>
               <div className="grid grid-cols-3 gap-6">
                 {[
-                  { num: "500+", label: "Lawns Maintained" },
+                  { num: "100+", label: "Lawns Maintained" },
                   { num: "1", label: "Year In Business" },
                   { num: "5★", label: "Google Rating" },
                 ].map((stat) => (
@@ -506,7 +506,7 @@ export function AboutPage() {
                   color: "#1A1A18",
                 }}
               >
-                Trusted By Hundreds Of <em>Happy Homeowners</em>
+                Trusted By Over 100 <em>Happy Homeowners</em>
               </h2>
               <p
                 className="mb-8"
