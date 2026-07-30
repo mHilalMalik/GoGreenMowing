@@ -1,24 +1,18 @@
-# GoGreenMowing Robots.txt
-# https://gogreenmowing.ca
+# Go Green Mowing — https://gogreenmowing.ca
 
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://gogreenmowing.ca/sitemap.xml
-
-# Disallow admin/api routes
 Disallow: /api/
 
-# Allow all crawlers to access images
-User-agent: Googlebot-Image
-Allow: /
-
-# AI Search Crawlers
+# AI search crawlers. Every route now ships prerendered HTML, so these bots
+# see real content without executing JavaScript.
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: Google-Extended
@@ -29,3 +23,20 @@ Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://gogreenmowing.ca/sitemap.xml

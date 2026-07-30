@@ -4,9 +4,7 @@ import { LimeLabel } from "../LimeLabel";
 import { AnimatedSection, StaggerChild } from "../AnimatedSection";
 import { CTABand } from "../CTABand";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { SEOHead } from "../SEOHead";
-import { JsonLd } from "../JsonLd";
-import { organizationSchema } from "../schema";
+import { PageSeo } from "../PageSeo";
 
 const values = [
   {
@@ -35,7 +33,7 @@ const milestones = [
   { year: "2023", title: "Founded in South Surrey", desc: "Started with a single mower and a vision for eco-friendly, reliable lawn care in our neighborhood." },
   { year: "2024", title: "Growing the Family", desc: "Word of mouth spread quickly as our commitment to quality earned us a growing base of loyal customers and we expanded our services." },
   { year: "2025", title: "Expanding Across Metro Vancouver", desc: "We broadened our reach beyond South Surrey, adding new crews and equipment to serve homeowners throughout the region." },
-  { year: "2026", title: "100+ Lawns and Counting", desc: "Three years in, we're proud to be a trusted partner for over a hundred homeowners, with a five-star reputation to match." },
+  { year: "2026", title: "100+ Lawns and Counting", desc: "Three years in, we're proud to be a trusted partner for over a hundred homeowners, built on referrals and repeat clients." },
 ];
 
 const team = [
@@ -45,12 +43,7 @@ const team = [
 export function AboutPage() {
   return (
     <>
-      <SEOHead
-        title="About Go Green Mowing | Trusted Lawn Care in Surrey & Metro Vancouver"
-        description="Learn about Go Green Mowing's journey. Helping our neighborhood take care of their lawn, we provide reliable, eco-friendly lawn care services in South Surrey and surrounding areas."
-        canonical="/about"
-      />
-      <JsonLd data={organizationSchema} />
+      <PageSeo path="/about" />
       {/* Hero Banner */}
       <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 lg:py-28">

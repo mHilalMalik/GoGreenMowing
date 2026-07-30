@@ -1,8 +1,7 @@
 import { useParams, Link, Navigate } from "react-router";
 import { ArrowRight, CheckCircle2, ChevronRight, Phone } from "lucide-react";
 import { servicesData } from "../../data/servicesData";
-import { SEOHead } from "../SEOHead";
-import { JsonLd } from "../JsonLd";
+import { PageSeo } from "../PageSeo";
 import { CTABand } from "../CTABand";
 import { AnimatedSection, StaggerChild } from "../AnimatedSection";
 import { LimeLabel } from "../LimeLabel";
@@ -17,53 +16,12 @@ export function ServiceDetailPage() {
         return <Navigate to="/services" replace />;
     }
 
-    // Generate Service Schema Dynamically for this local page
-    const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        serviceType: service.title,
-        provider: {
-            "@type": "LocalBusiness",
-            name: "Go Green Mowing",
-            url: "https://gogreenmowing.ca",
-            image: "https://gogreenmowing.ca/logo.png",
-            telephone: "+1-778-558-0447"
-        },
-        areaServed: service.areasServed.map((area) => ({
-            "@type": "City",
-            name: area,
-            containedInPlace: { "@type": "AdministrativeArea", name: "British Columbia", addressRegion: "BC" }
-        })),
-        description: service.metaDescription,
-        url: `https://gogreenmowing.ca/services/${service.slug}`
-    };
-
-    // Generate FAQ Schema Dynamically
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: service.faqs.map(faq => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer
-            }
-        }))
-    };
-
     return (
         <>
-            <SEOHead
-                title={service.metaTitle}
-                description={service.metaDescription}
-                canonical={`/services/${service.slug}`}
-            />
-            <JsonLd data={[serviceSchema, faqSchema]} />
+            <PageSeo path={`/services/${service.slug}`} />
 
             {/* Hero Banner */}
             <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/clean-textile.png')" }}></div>
                 <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-20 lg:py-28 relative z-10">
                     <div className="max-w-3xl">
                         <div

@@ -2,28 +2,14 @@ import { Link } from "react-router";
 import { Clock, ArrowRight, Tag } from "lucide-react";
 import { LimeLabel } from "../LimeLabel";
 import { AnimatedSection, StaggerChild } from "../AnimatedSection";
-import { SEOHead } from "../SEOHead";
-import { JsonLd } from "../JsonLd";
-import { localBusinessSchema, breadcrumbSchema } from "../schema";
+import { PageSeo } from "../PageSeo";
 import { blogPosts } from "../blogData";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function BlogPage() {
     return (
         <>
-            <SEOHead
-                title="Lawn Care Blog | Go Green Mowing – South Surrey, BC"
-                description="Expert lawn care tips, seasonal guides, and eco-friendly gardening advice for South Surrey and Metro Vancouver homeowners. From Go Green Mowing."
-                canonical="/blog"
-            />
-            <JsonLd
-                data={[
-                    localBusinessSchema,
-                    breadcrumbSchema([
-                        { name: "Home", url: "/" },
-                        { name: "Blog", url: "/blog" },
-                    ]),
-                ]}
-            />
+            <PageSeo path="/blog" />
 
             {/* Hero Banner */}
             <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
@@ -79,12 +65,24 @@ export function BlogPage() {
                                         className="group block h-full"
                                     >
                                         <article
-                                            className="p-7 h-full flex flex-col border transition-all duration-300 hover:-translate-y-1"
+                                            className="h-full flex flex-col border overflow-hidden transition-all duration-300 hover:-translate-y-1"
                                             style={{
                                                 backgroundColor: "white",
                                                 borderColor: "rgba(0,0,0,0.06)",
                                             }}
                                         >
+                                            {/* Hero image */}
+                                            {post.image && (
+                                                <div className="relative overflow-hidden h-48 shrink-0">
+                                                    <ImageWithFallback
+                                                        src={post.image}
+                                                        alt={post.imageAlt ?? post.title}
+                                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                                                    />
+                                                </div>
+                                            )}
+
+                                            <div className="p-7 flex-1 flex flex-col">
                                             {/* Category + Read time */}
                                             <div className="flex items-center justify-between mb-4">
                                                 <span
@@ -166,6 +164,7 @@ export function BlogPage() {
                                                 >
                                                     Read more <ArrowRight className="w-3.5 h-3.5" />
                                                 </span>
+                                            </div>
                                             </div>
                                         </article>
                                     </Link>

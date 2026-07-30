@@ -2,13 +2,8 @@ import { useParams, Link } from "react-router";
 import { ArrowLeft, Clock, Tag, ChevronRight } from "lucide-react";
 import { LimeLabel } from "../LimeLabel";
 import { AnimatedSection } from "../AnimatedSection";
-import { SEOHead } from "../SEOHead";
-import { JsonLd } from "../JsonLd";
-import {
-    localBusinessSchema,
-    breadcrumbSchema,
-    articleSchema,
-} from "../schema";
+import { PageSeo } from "../PageSeo";
+import { NotFoundPage } from "./NotFoundPage";
 import { getPostBySlug, blogPosts } from "../blogData";
 
 export function BlogPostPage() {
@@ -16,40 +11,7 @@ export function BlogPostPage() {
     const post = slug ? getPostBySlug(slug) : undefined;
 
     if (!post) {
-        return (
-            <section className="pt-[68px] pb-24" style={{ backgroundColor: "#FDFCFA" }}>
-                <div className="max-w-[800px] mx-auto px-6 py-24 text-center">
-                    <h1
-                        style={{
-                            fontFamily: "'Playfair Display', serif",
-                            fontSize: "2rem",
-                            fontWeight: 700,
-                            color: "#1A1A18",
-                        }}
-                    >
-                        Post Not Found
-                    </h1>
-                    <p
-                        className="mt-4 mb-8"
-                        style={{ fontFamily: "'DM Sans', sans-serif", color: "#4A4A44" }}
-                    >
-                        The blog post you're looking for doesn't exist.
-                    </p>
-                    <Link
-                        to="/blog"
-                        className="inline-flex items-center gap-2 px-6 py-3"
-                        style={{
-                            backgroundColor: "#7AB648",
-                            color: "#1C3A1C",
-                            fontFamily: "'DM Sans', sans-serif",
-                            fontWeight: 600,
-                        }}
-                    >
-                        <ArrowLeft className="w-4 h-4" /> Back to Blog
-                    </Link>
-                </div>
-            </section>
-        );
+        return <NotFoundPage />;
     }
 
     // Render markdown-like content
@@ -154,32 +116,7 @@ export function BlogPostPage() {
 
     return (
         <>
-            <SEOHead
-                title={`${post.title} | Go Green Mowing Blog`}
-                description={post.excerpt}
-                canonical={`/blog/${post.slug}`}
-                type="article"
-                publishedDate={post.dateISO}
-                modifiedDate={post.dateISO}
-            />
-            <JsonLd
-                data={[
-                    localBusinessSchema,
-                    breadcrumbSchema([
-                        { name: "Home", url: "/" },
-                        { name: "Blog", url: "/blog" },
-                        { name: post.title, url: `/blog/${post.slug}` },
-                    ]),
-                    articleSchema({
-                        title: post.title,
-                        description: post.excerpt,
-                        slug: post.slug,
-                        datePublished: post.dateISO,
-                        dateModified: post.dateISO,
-                        author: post.author,
-                    }),
-                ]}
-            />
+            <PageSeo path={`/blog/${post.slug}`} />
 
             {/* Hero */}
             <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
@@ -350,7 +287,7 @@ export function BlogPostPage() {
                                     color: "rgba(255,255,255,0.6)",
                                 }}
                             >
-                                Get a free estimate from Go Green Mowing. 500+ lawns maintained, 4.9★ rating.
+                                Get a free estimate from Go Green Mowing. 100+ properties maintained across South Surrey and White Rock.
                             </p>
                             <Link
                                 to="/contact"

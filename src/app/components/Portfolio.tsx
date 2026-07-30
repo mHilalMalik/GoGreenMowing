@@ -1,42 +1,15 @@
 import { LimeLabel } from "./LimeLabel";
 import { AnimatedSection } from "./AnimatedSection";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { featuredProjects, type PortfolioProject } from "../data/portfolioData";
+import { Link } from "react-router";
 
-const projects = [
-  {
-    title: "Residential Garden Makeover",
-    category: "Residential",
-    img: "https://images.unsplash.com/photo-1760643491623-3de22e9980e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMGdhcmRlbiUyMG1ha2VvdmVyJTIwYmVhdXRpZnVsJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc3Mjc3OTU1N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    tall: true,
-  },
-  {
-    title: "Luxury Landscape Design",
-    category: "Luxury Estate",
-    img: "https://images.unsplash.com/photo-1758612120966-b20c01160c7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBsYW5kc2NhcGUlMjBkZXNpZ24lMjBlc3RhdGUlMjBnYXJkZW58ZW58MXx8fHwxNzcyNzc5NTU3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  },
-  {
-    title: "Commercial Office Complex",
-    category: "Commercial",
-    img: "https://images.unsplash.com/photo-1769311485529-46b3c90f760e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwbGFuZHNjYXBpbmclMjBvZmZpY2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NzI3Nzk1NTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  },
-  {
-    title: "Eco-Friendly Urban Garden",
-    category: "Urban",
-    img: "https://images.unsplash.com/photo-1713777571574-12e4b0ab5275?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMGdhcmRlbiUyMGdyZWVuJTIwZWNvLWZyaWVuZGx5fGVufDF8fHx8MTc3Mjc3OTU1OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  },
-  {
-    title: "Spring Property Refresh",
-    category: "Seasonal",
-    img: "https://images.unsplash.com/photo-1772538620835-731723af362d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcHJpbmclMjBnYXJkZW4lMjBmcmVzaCUyMGdyZWVuJTIwZmxvd2VycyUyMHByb3BlcnR5fGVufDF8fHx8MTc3Mjc3OTU1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  },
-];
-
-function ProjectCard({ project }: { project: typeof projects[0] }) {
+function ProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <div className="group relative overflow-hidden cursor-pointer h-full">
       <ImageWithFallback
         src={project.img}
-        alt={project.title}
+        alt={project.alt}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
       />
       {/* Hover overlay */}
@@ -69,6 +42,15 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
         >
           {project.title}
         </h3>
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "0.75rem",
+            color: "rgba(255,255,255,0.65)",
+          }}
+        >
+          {project.location}
+        </p>
       </div>
     </div>
   );
@@ -102,22 +84,38 @@ export function Portfolio() {
         <div className="grid md:grid-cols-3 gap-3" style={{ gridAutoRows: "220px" }}>
           {/* Tall left card */}
           <div className="md:row-span-2">
-            <ProjectCard project={projects[0]} />
+            <ProjectCard project={featuredProjects[0]} />
           </div>
           {/* Top right 2 cards */}
           <div>
-            <ProjectCard project={projects[1]} />
+            <ProjectCard project={featuredProjects[1]} />
           </div>
           <div>
-            <ProjectCard project={projects[2]} />
+            <ProjectCard project={featuredProjects[2]} />
           </div>
           {/* Bottom right 2 cards */}
           <div>
-            <ProjectCard project={projects[3]} />
+            <ProjectCard project={featuredProjects[3]} />
           </div>
           <div>
-            <ProjectCard project={projects[4]} />
+            <ProjectCard project={featuredProjects[4]} />
           </div>
+        </div>
+
+        <div className="mt-10">
+          <Link
+            to="/our-work"
+            className="inline-flex items-center gap-2 px-7 py-3.5 transition-colors hover:opacity-90"
+            style={{
+              backgroundColor: "#1C3A1C",
+              color: "white",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+            }}
+          >
+            View all projects
+          </Link>
         </div>
       </div>
     </AnimatedSection>

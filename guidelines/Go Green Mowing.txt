@@ -1,0 +1,441 @@
+================================================================================
+DEEP-DIVE SEO ANALYSIS: GO GREEN MOWING (gogreenmowing.ca)
+Eco-friendly lawn care · South Surrey, BC · Service-Area Business (SAB)
+Analyzed: 2026-07-05
+Scope: Website + Google Business Profile
+Method: 4 specialist audits (Technical, Schema, GEO/AI, Local) + raw HTML / bundle
+        inspection + web search. GBP data NOT independently verifiable (see note).
+================================================================================
+
+
+--------------------------------------------------------------------------------
+OVERALL SEO HEALTH SCORE: 43 / 100  (ORANGE — needs work, but fixable)
+--------------------------------------------------------------------------------
+Category            Weight   Score   Verdict
+Technical SEO        22%       42     Good hygiene, fatal rendering flaw
+Content Quality      23%      ~50     Genuinely good — but invisible to crawlers
+On-Page SEO          20%       45     Meta tags good, no per-route uniqueness in HTML
+Schema               10%       40     Rich types, but JS-only + rating risk
+Performance (CWV)    10%       45     500KB JS + blocking fonts (needs field data)
+AI Search (GEO)      10%       22     Effectively invisible to AI crawlers
+Images                5%      ~50     Unverified (JS-rendered)
+
+Sub-scores from specialists:
+- Technical SEO score:  42/100
+- GEO readiness score:  22/100 (would be ~65-75 on rendered content alone)
+- Local SEO score:      46/100 (provisional — GBP dimension unverified)
+
+
+--------------------------------------------------------------------------------
+BUSINESS PROFILE (gathered facts)
+--------------------------------------------------------------------------------
+Business name:   Go Green Mowing
+Type:            Service-Area Business (SAB), eco-friendly lawn care
+Home base:       South Surrey, BC, Canada
+Phone (site):    +1-778-558-0447  (consistent across the whole site)
+Email:           info@gogreenmowing.ca
+Price range:     $$ (schema)
+Self-reported:   500+ lawns maintained; "5-star" (OG) / "4.9 / 120 reviews" (schema)
+Insurance:       Fully insured, WorkSafe BC compliant; free estimates
+Stack:           Vite + React SPA (React Router, client-side routing) on Netlify
+Social:          Instagram ("Follow us on Instagram")
+
+Services (9):    Lawn mowing, core aeration, hedge trimming, power washing,
+                 seasonal/fall cleanups, garden maintenance, fertilizing,
+                 landscape/garden design, green waste removal
+
+Service-area cities (schema areaServed):
+                 South Surrey, Surrey, White Rock, Delta, Langley
+                 (+ "Metro Vancouver / Vancouver" in marketing copy — see MEDIUM #3)
+
+Sitemap pages (11):
+  /                                             (priority 1.0)
+  /about                                        (0.8)
+  /services                                     (0.9)
+  /our-work                                     (0.7)
+  /contact                                      (0.8)
+  /blog                                         (0.7)
+  /blog/eco-friendly-lawn-care-south-surrey     (0.6)
+  /blog/spring-lawn-care-tips-metro-vancouver   (0.6)
+  /blog/best-lawn-mowing-practices-bc           (0.6)
+  /blog/when-to-aerate-lawn-south-surrey        (0.6)
+  /blog/power-washing-tips-vancouver-homeowners (0.6)
+  (all lastmod 2026-03-06 — identical; see MEDIUM #4)
+
+
+================================================================================
+THE ONE THING THAT MATTERS MOST (ROOT CAUSE)
+================================================================================
+The site is a CLIENT-SIDE-RENDERED React/Vite SPA on Netlify that serves an
+empty 1,638-byte shell to crawlers. Every URL — homepage, /services, /about,
+all 5 blog posts, even fake 404 URLs — returns the BYTE-IDENTICAL empty page
+with the same <title>. All content, headings, NAP, reviews, and schema only
+appear AFTER JavaScript executes in a browser.
+
+Proof:
+  curl -A "GPTBot"    https://gogreenmowing.ca/         -> 1638 bytes, <div id="root"></div>
+  curl -A "GPTBot"    https://gogreenmowing.ca/services -> 1638 bytes, IDENTICAL
+  curl -A "ClaudeBot" https://gogreenmowing.ca/blog/... -> 1638 bytes, IDENTICAL
+
+What this breaks, all at once:
+  * AI crawlers see NOTHING. robots.txt explicitly invites GPTBot, ChatGPT-User,
+    Google-Extended, PerplexityBot, ClaudeBot — but none execute JS. Red carpet
+    to a glass door with an empty room. GEO score: 22/100.
+  * Google indexes every page as the homepage until its delayed "second-wave"
+    render runs (hours to weeks, not guaranteed). Bing largely can't render it.
+  * LocalBusiness schema, NAP, and the 4.9-star rating are invisible to anything
+    that doesn't run JavaScript.
+  * Social shares (Slack, LinkedIn, iMessage) preview every page as the homepage.
+
+>> Fixing rendering is the prerequisite for ~60% of everything else in this report.
+   No content, schema, or copywriting fix matters until content reaches crawlers.
+
+
+================================================================================
+CRITICAL (fix first — blocks indexing & AI visibility)
+================================================================================
+
+[1] SHIP SERVER-RENDERED / PRERENDERED HTML FOR ALL ROUTES
+    Content is largely static (5 pages + 5 blog posts) — ideal for prerendering.
+    Options by effort:
+      LOW    - Prerender.io or Netlify bot-prerendering (serves snapshot to bots)
+      MEDIUM - react-snap / vite-plugin-ssr build-time snapshot  [RECOMMENDED]
+               (real static HTML per route, no runtime cost, robust)
+      HIGH   - Migrate to Astro or Next.js SSG (near-zero JS, fixes CWV too, permanent)
+    Verify: curl -A "GPTBot" https://gogreenmowing.ca/services | wc -c
+            should jump from 1,638 bytes to several KB with real body text
+            + <script type="application/ld+json"> present.
+
+[2] MOVE JSON-LD SCHEMA INTO SERVER-RENDERED HTML
+    curl finds ZERO application/ld+json today — schema is JS-injected. A bundle
+    error, hash change, or crawler timeout silently kills all rich-result
+    eligibility. Bake schema into initial HTML per route (folds into fix #1).
+
+[3] REMOVE OR PROPERLY BACK THE AGGREGATERATING (4.9 / 120)
+    Rating is HARDCODED in the JS bundle. Google requires aggregateRating to
+    reflect genuine reviews VISIBLY on the page (or pulled live). A static,
+    never-changing 4.9/120 with no on-page individual Review markup is a common
+    trigger for a "review markup spam" MANUAL ACTION that can suppress rich
+    results for the ENTIRE domain. Either display real reviews with Review items,
+    pull live from GBP, or remove it until you do.
+
+[4] RESOLVE NAP / PHONE CONSISTENCY & BRAND-CONFUSION RISK
+    - Website uses ONE consistent number: +1-778-558-0447 (email info@gogreenmowing.ca). Good.
+    - WARNING: search surfaces TWO other "Go Green"/"Little Green" lawn businesses
+      in BC with different numbers (604-880-4355, 604-328-7326). Risk of
+      misattributed reviews, confused customers, diluted citations in a crowded
+      "[color] Green Mowing" micro-niche.
+    - NO BBB listing found. YellowPages.ca search returns a DIFFERENT company
+      ("Little Green Mowing Co"), not you.
+    - Action: confirm GBP-verified phone (GBP always wins), make it byte-identical
+      everywhere; claim BBB + a distinct YellowPages.ca listing.
+
+[5] VERIFY THE GOOGLE BUSINESS PROFILE DIRECTLY (COULD NOT BE READ)
+    The share.google link resolves to a JS-rendered Google Maps surface no
+    automated tool in this session could read. Live rating, review count,
+    categories, hours, and service area are UNCONFIRMED.
+    Also: OG tag says "5-star rated" while schema says "4.9" — reconcile.
+    Pull GBP dashboard data (or grant DataForSEO access) to verify:
+      * Actual rating & review count vs. schema's 4.9/120
+      * Primary category (should be "Lawn Care Service")
+      * Verified SAB with hidden address
+      * Service-area radius, photos, posts, Q&A activity
+
+
+================================================================================
+HIGH (fix within ~1 week)
+================================================================================
+
+[6] ADD PER-ROUTE <title>, META DESCRIPTION & CANONICAL TO RAW HTML
+    Every route shares the homepage title/description in raw HTML (fixed only
+    after JS runs). No canonical tags exist anywhere; trailing-slash variants
+    both return 200 (/services and /services/). Google must guess canonicals.
+    Bake unique title/description/canonical per route into prerendered HTML.
+
+[7] FIX THE FAKE-404 PROBLEM
+    Netlify's SPA rewrite returns HTTP 200 for every nonexistent URL
+    (/this-page-does-not-exist -> 200, same shell) -> soft-404s that dilute
+    crawl budget. Add a React catch-all route rendering a real "not found" view
+    with noindex.
+
+[8] PUBLISH A REAL /llms.txt
+    Currently /llms.txt returns the SPA shell (false 200), not a real file.
+    Ship a static markdown llms.txt listing services, service area, and blog —
+    but only AFTER fix #1 (it points to pages that must be crawlable). Draft
+    below.
+
+[9] BUILD GENUINE CITY SERVICE PAGES — NOT DOORWAY PAGES
+    All 5 cities funnel to one generic /services page. Dedicated service pages
+    are the #1 local ranking factor. START WITH SOUTH SURREY (home base) +
+    WHITE ROCK only, each with genuinely unique content (local landmarks,
+    strata/HOA nuances, area-specific before/after photos, unique testimonials).
+    WARNING: do NOT template-swap city names (doorway-page policy violation).
+    Enforce 60%+ unique content; expand to Delta/Langley only after first two
+    prove depth.
+
+[10] SYSTEMATIZE REVIEW REQUESTS (THE 18-DAY RULE)
+    Local rankings can drop after ~3 weeks with no new review. As a recurring-
+    service business you have a built-in advantage — automate an SMS/email review
+    ask post-service targeting 2-4 new reviews every 18 days. Respond to 100%
+    of reviews within 48 hours.
+
+[11] FULL TIER-1 CITATION BUILD-OUT
+    Priority for a Surrey lawn-care SAB:
+      GBP -> Bing Places -> Apple Business Connect -> BBB -> Yelp.ca ->
+      HomeStars (high-value for Canadian home services) -> TrustedPros ->
+      YellowPages.ca -> Nextdoor -> Houzz (if landscape design emphasized)
+    Run a BrightLocal/Whitespark audit for exact live status.
+
+[12] ADD SECURITY HEADERS + SELF-HOST FONTS
+    Only HSTS present. Add via Netlify _headers: X-Content-Type-Options,
+    X-Frame-Options, Referrer-Policy, Permissions-Policy, CSP. Self-host
+    Playfair Display + DM Sans (currently render-blocking cross-origin) and
+    code-split the 500KB bundle to improve LCP.
+    Also: HSTS missing includeSubDomains; preload.
+
+
+================================================================================
+MEDIUM (within ~1 month)
+================================================================================
+
+[1] CONSOLIDATE SCHEMA GRAPH
+    Organization appears x3 (entity ambiguity). Collapse to one @id-linked @graph;
+    nest the 7 Service nodes under hasOfferCatalog; add sameAs (GBP, Instagram,
+    Facebook), openingHoursSpecification. LawnAndGardenService is the CORRECT
+    type — keep it. Use @type array ["LawnAndGardenService","LocalBusiness"].
+
+[2] CONFIRM GBP CATEGORY = "LAWN CARE SERVICE"
+    Add secondaries: Landscaper, Pressure Washing Service, (Landscape Designer).
+    Wrong primary category is the #1 negative local ranking factor.
+
+[3] TIGHTEN SERVICE-AREA COPY
+    "Metro Vancouver / Vancouver" from a South Surrey base (30+ min drive) can
+    trigger Google's unrealistic-service-area flag and dilute proximity relevance
+    (proximity ~55% of ranking variance). Concentrate on the core 5 cities.
+
+[4] FIX SITEMAP lastmod
+    All 11 URLs share 2026-03-06. Use real per-page modification dates so Google
+    trusts the signal. changefreq/priority are largely ignored by Google — low value.
+
+[5] RESTRUCTURE CONTENT FOR AI CITATION (post-render)
+    Convert service H2s to question form ("How often should you aerate a lawn in
+    South Surrey?"). Make each FAQ answer a self-contained 130-170 word block
+    with a direct-answer opening sentence and local specifics (soil type, climate
+    mowing frequency).
+
+
+================================================================================
+LOW / BACKLOG
+================================================================================
+- 3-5 short YouTube videos (mowing demo, aeration explainer, before/after) —
+  highest single off-site correlation with AI citations.
+- Seed a few organic Reddit/Nextdoor community mentions (r/surrey, r/vancouver).
+- Add <html lang="en-CA"> (currently plain "en").
+- IndexNow integration for faster Bing/Yandex pickup of blog posts.
+- FAQPage schema: KEEP for AI-citation value, but Google retired FAQ rich results
+  for all sites (May 2026) — no SERP feature anymore; don't expect snippets.
+
+
+================================================================================
+WHAT'S ALREADY GOOD (keep)
+================================================================================
+- Clean robots.txt (correct AI-crawler intent), valid sitemap.xml, HTTPS enforced,
+  HSTS present, www->non-www and http->https redirects all correct (single hop).
+- Well-written meta description + Open Graph tags (the one thing crawlers see today).
+- Correct SAB schema pattern (no street address, proper areaServed cities).
+- LawnAndGardenService is the right, specific business type.
+- No deprecated schema types (no HowTo, SpecialAnnouncement, etc.).
+- Viewport meta present (mobile baseline correct).
+- Solid content foundation (eco-friendly angle, 9 services, 5 locally-targeted
+  blog posts) — just trapped behind JavaScript.
+
+
+================================================================================
+DO-THIS-NEXT SEQUENCE
+================================================================================
+1. PRERENDER/SSR THE SITE  (fixes #1, #2, #6, #7, #8 + half of schema/GEO/local
+   findings simultaneously) — HIGHEST ROI ACTION AVAILABLE.
+2. VERIFY GBP + RESOLVE RATING/PHONE — need dashboard data or DataForSEO access.
+3. FIX THE AGGREGATERATING RISK.
+4. CLAIM BBB + CITATIONS, standardize NAP.
+5. BUILD SOUTH SURREY + WHITE ROCK PAGES, launch the review-request flow.
+
+Encouraging note: problems are almost entirely ARCHITECTURAL, not content-quality.
+On rendered content alone the GEO score would be ~65-75 instead of 22. One
+rendering fix unlocks nearly everything — health score should jump from 43 into
+the 70s once content actually reaches crawlers.
+
+
+================================================================================
+SCHEMA: RECOMMENDED CONSOLIDATED @graph (homepage) — MUST be SERVER-rendered
+================================================================================
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LawnAndGardenService", "LocalBusiness"],
+      "@id": "https://gogreenmowing.ca/#business",
+      "name": "Go Green Mowing",
+      "url": "https://gogreenmowing.ca/",
+      "telephone": "+1-778-558-0447",
+      "email": "info@gogreenmowing.ca",
+      "priceRange": "$$",
+      "image": "https://gogreenmowing.ca/assets/logo.png",
+      "areaServed": [
+        { "@type": "City", "name": "South Surrey" },
+        { "@type": "City", "name": "Surrey" },
+        { "@type": "City", "name": "White Rock" },
+        { "@type": "City", "name": "Delta" },
+        { "@type": "City", "name": "Langley" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-778-558-0447",
+        "contactType": "customer service",
+        "areaServed": "CA"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Lawn & Garden Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://gogreenmowing.ca/services/lawn-mowing/#service",
+              "name": "Lawn Mowing",
+              "serviceType": "Lawn Mowing",
+              "provider": { "@id": "https://gogreenmowing.ca/#business" },
+              "areaServed": { "@id": "https://gogreenmowing.ca/#business" }
+            }
+          }
+          /* repeat Offer/Service for: Aeration, Hedge Trimming, Power Washing,
+             Seasonal Cleanups, Garden Maintenance, Fertilizing, Landscape Design,
+             Green Waste Removal */
+        ]
+      },
+      "publisher": { "@id": "https://gogreenmowing.ca/#organization" }
+      /* aggregateRating INTENTIONALLY OMITTED until backed by genuine, visible,
+         individually-marked-up reviews or a live GBP feed */
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://gogreenmowing.ca/#organization",
+      "name": "Go Green Mowing",
+      "url": "https://gogreenmowing.ca/",
+      "logo": "https://gogreenmowing.ca/assets/logo.png",
+      "sameAs": [
+        "https://www.instagram.com/<handle>",
+        "https://www.facebook.com/<handle>",
+        "<Google Business Profile URL>"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://gogreenmowing.ca/#webpage",
+      "url": "https://gogreenmowing.ca/",
+      "name": "Go Green Mowing | Lawn Care South Surrey BC",
+      "isPartOf": { "@id": "https://gogreenmowing.ca/#organization" },
+      "about": { "@id": "https://gogreenmowing.ca/#business" },
+      "breadcrumb": { "@id": "https://gogreenmowing.ca/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://gogreenmowing.ca/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",
+          "item": "https://gogreenmowing.ca/" }
+      ]
+    }
+  ]
+}
+
+
+================================================================================
+DRAFT /llms.txt  (publish as a REAL static file at /public/llms.txt, AFTER fix #1)
+================================================================================
+# Go Green Mowing
+
+> Eco-friendly lawn care and property maintenance serving South Surrey and Metro
+> Vancouver, BC. Family-owned, 500+ lawns maintained, 5-star rated.
+
+Go Green Mowing provides residential and commercial lawn care with an emphasis on
+eco-friendly practices (organic fertilizing, mulch-mowing, low-impact equipment)
+across South Surrey, White Rock, Surrey, Delta, and Langley, BC.
+
+## Services
+- [Lawn Mowing](https://gogreenmowing.ca/services): Regular eco-friendly mowing.
+- [Aeration](https://gogreenmowing.ca/services): Core aeration to relieve compaction.
+- [Hedge Trimming](https://gogreenmowing.ca/services): Shaping hedges and shrubs.
+- [Power Washing](https://gogreenmowing.ca/services): Driveway, deck, exterior cleaning.
+- [Seasonal Cleanups](https://gogreenmowing.ca/services): Spring and fall yard cleanup.
+- [Garden Maintenance & Fertilizing](https://gogreenmowing.ca/services): Ongoing garden care.
+
+## Company
+- [About](https://gogreenmowing.ca/about)
+- [Contact](https://gogreenmowing.ca/contact)
+- [Our Work](https://gogreenmowing.ca/our-work)
+
+## Blog
+- [Eco-Friendly Lawn Care in South Surrey](https://gogreenmowing.ca/blog/eco-friendly-lawn-care-south-surrey)
+- [Spring Lawn Care Tips for Metro Vancouver](https://gogreenmowing.ca/blog/spring-lawn-care-tips-metro-vancouver)
+- [Best Lawn Mowing Practices in BC](https://gogreenmowing.ca/blog/best-lawn-mowing-practices-bc)
+- [When to Aerate Your Lawn in South Surrey](https://gogreenmowing.ca/blog/when-to-aerate-lawn-south-surrey)
+- [Power Washing Tips for Vancouver Homeowners](https://gogreenmowing.ca/blog/power-washing-tips-vancouver-homeowners)
+
+## Service Area
+South Surrey, White Rock, Surrey, Delta, Langley, BC.
+
+
+================================================================================
+SECURITY HEADERS  (Netlify _headers file)
+================================================================================
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' fonts.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; font-src fonts.gstatic.com; connect-src 'self'
+
+
+================================================================================
+VERIFICATION COMMANDS (re-run anytime to confirm state / fixes)
+================================================================================
+curl -A "GPTBot" https://gogreenmowing.ca/ | wc -c                  # should be >> 1638 after fix
+curl -A "ClaudeBot" https://gogreenmowing.ca/services | wc -c
+curl -s https://gogreenmowing.ca/services | grep -o '<title>[^<]*</title>'   # should be services-specific
+curl -s https://gogreenmowing.ca/ | grep -i "application/ld+json"   # schema in raw HTML
+curl https://gogreenmowing.ca/llms.txt                             # should return markdown, not HTML shell
+curl -sI https://gogreenmowing.ca/services/                        # should 301 -> /services
+curl -s -D - -o /dev/null https://gogreenmowing.ca/does-not-exist-xyz  # should NOT be plain 200 indexable
+curl -sI https://gogreenmowing.ca/ | grep -iE "x-frame|content-security|x-content-type|referrer-policy|permissions-policy"
+curl -s https://gogreenmowing.ca/robots.txt
+curl -s https://gogreenmowing.ca/sitemap.xml
+
+
+================================================================================
+KNOWN LIMITATIONS OF THIS AUDIT
+================================================================================
+1. Live Google Business Profile could NOT be read — share.google resolves to a
+   JS-rendered Google Maps surface. Rating (4.9?/5-star?), review count (120?),
+   categories, hours, photos, posts, and Q&A are UNVERIFIED. Provide GBP dashboard
+   export or DataForSEO access to confirm.
+2. Yelp.ca and HomeStars blocked automated fetches (403). Citation status on
+   those is inferred, not confirmed.
+3. Core Web Vitals are a source-inspection RISK assessment only — confirm with
+   PageSpeed Insights / CrUX field data (pagespeed.web.dev/analysis?url=https://gogreenmowing.ca).
+4. On-page content was extracted from the JS bundle, not a live browser render
+   (no headless browser available this session).
+
+================================================================================
+END OF REPORT — Go Green Mowing SEO Deep Dive · 2026-07-05
+================================================================================

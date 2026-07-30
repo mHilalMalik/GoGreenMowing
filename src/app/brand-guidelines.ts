@@ -173,7 +173,7 @@ export const brand = {
         location: "South Surrey, BC, Canada",
         website: "gogreenmowing.ca",
         hours: "Monday – Saturday, 7am – 7pm",
-        founded: "2014",
+        founded: "2023",
         areasServed: [
             "South Surrey",
             "White Rock",

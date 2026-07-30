@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import { Phone, ArrowRight, Shield } from "lucide-react";
 import { LimeLabel } from "./LimeLabel";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { brand, headingStyle, bodyStyle, labelStyle } from "../brand-guidelines";
+
+// Prerendered HTML must not ship the hero (including the <h1>) at opacity 0.
+const isServer = typeof window === "undefined";
 
 export function Hero() {
   return (
@@ -12,7 +15,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={isServer ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
@@ -107,7 +110,7 @@ export function Hero() {
 
           <motion.div
             className="relative hidden lg:block"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={isServer ? false : { opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >

@@ -7,9 +7,8 @@ import {
   Leaf, Scissors, Sprout, Wind, Droplets, ArrowRight,
   Flower2, Shovel, TreeDeciduous, Pipette, Trash2
 } from "lucide-react";
-import { SEOHead } from "../SEOHead";
-import { JsonLd } from "../JsonLd";
-import { serviceSchemas, breadcrumbSchema } from "../schema";
+import { PageSeo } from "../PageSeo";
+import { locationsData } from "../../data/locationsData";
 
 const serviceCategories = [
   {
@@ -111,20 +110,7 @@ const serviceCategories = [
 export function ServicesPage() {
   return (
     <>
-      <SEOHead
-        title="Lawn Care Services | Go Green Mowing – South Surrey, BC"
-        description="Professional lawn mowing, hedge trimming, aeration, fertilizing, power washing, landscaping, gutter cleaning, and seasonal cleanups. Eco-friendly lawn care in South Surrey and Metro Vancouver."
-        canonical="/services"
-      />
-      <JsonLd
-        data={[
-          ...serviceSchemas,
-          breadcrumbSchema([
-            { name: "Home", url: "/" },
-            { name: "Services", url: "/services" },
-          ]),
-        ]}
-      />
+            <PageSeo path="/services" />
 
       {/* Hero Banner */}
       <section className="relative pt-[68px]" style={{ backgroundColor: "#1C3A1C" }}>
@@ -255,6 +241,69 @@ export function ServicesPage() {
           ))}
         </div>
       </section>
+
+      {/* Areas we serve — internal links to the location pages */}
+      <AnimatedSection className="py-20" style={{ backgroundColor: "#F7F4EE" }}>
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+          <LimeLabel text="Areas We Serve" />
+          <h2
+            className="mb-4"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(1.5rem, 2.6vw, 2rem)",
+              fontWeight: 700,
+              color: "#1A1A18",
+            }}
+          >
+            Where we <em>work</em>
+          </h2>
+          <p
+            className="mb-8 max-w-2xl"
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "0.95rem",
+              lineHeight: 1.8,
+              color: "#4A4A44",
+            }}
+          >
+            We serve South Surrey, White Rock, Surrey, Delta and Langley. Lawn
+            care is not the same job in each of them — soil, slope and tree
+            cover all change what a property needs.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {Object.values(locationsData).map((loc) => (
+              <Link
+                key={loc.slug}
+                to={`/lawn-care/${loc.slug}`}
+                className="group block p-6 border transition-all hover:-translate-y-0.5 hover:shadow-md"
+                style={{ backgroundColor: "white", borderColor: "rgba(0,0,0,0.07)" }}
+              >
+                <h3
+                  className="mb-2 group-hover:text-[#7AB648] transition-colors"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "1.15rem",
+                    fontWeight: 600,
+                    color: "#1A1A18",
+                  }}
+                >
+                  Lawn care in {loc.city}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "0.88rem",
+                    lineHeight: 1.75,
+                    color: "#4A4A44",
+                  }}
+                >
+                  {loc.heroSubheadline}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
 
       <CTABand />
     </>

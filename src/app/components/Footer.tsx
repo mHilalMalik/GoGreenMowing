@@ -1,5 +1,10 @@
-import { Phone, MapPin, Globe, Instagram, Facebook } from "lucide-react";
+import { Phone, MapPin, Mail, Globe, Instagram, Facebook } from "lucide-react";
 import { Link } from "react-router";
+import { NAP } from "./schema";
+
+const MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `Go Green Mowing, ${NAP.full}`,
+)}`;
 
 export function Footer() {
   return (
@@ -65,7 +70,10 @@ export function Footer() {
                 { label: "About Us", path: "/about" },
                 { label: "Services", path: "/services" },
                 { label: "Our Work", path: "/our-work" },
+                { label: "Blog", path: "/blog" },
                 { label: "Contact", path: "/contact" },
+                { label: "Lawn Care South Surrey", path: "/lawn-care/south-surrey" },
+                { label: "Lawn Care White Rock", path: "/lawn-care/white-rock" },
               ].map((link) => (
                 <Link
                   key={link.label}
@@ -99,24 +107,32 @@ export function Footer() {
             </h4>
             <div className="space-y-2.5 max-h-[250px] flex flex-col flex-wrap gap-x-8 pr-4">
               {[
-                "Lawn Care", "Lawn Mowing", "Aeration", "Fertilizing",
-                "Power Raking", "Hedge Trimming", "Pruning", "Gardening",
-                "Spring Cleanup", "Landscaping", "Gutter Cleaning",
-                "Power Washing", "Fall Cleanup", "Junk/Green Waste Removal"
-              ].map(
-                (s) => (
-                  <p
-                    key={s}
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.82rem",
-                      color: "rgba(255,255,255,0.4)",
-                    }}
-                  >
-                    {s}
-                  </p>
-                )
-              )}
+                { label: "Lawn Mowing", slug: "lawn-mowing" },
+                { label: "Aeration", slug: "aeration" },
+                { label: "Fertilizing", slug: "fertilizing" },
+                { label: "Power Raking", slug: "power-raking" },
+                { label: "Hedge Trimming", slug: "hedge-trimming" },
+                { label: "Pruning", slug: "pruning" },
+                { label: "Gardening", slug: "gardening" },
+                { label: "Spring & Fall Cleanup", slug: "spring-fall-cleanup" },
+                { label: "Landscaping", slug: "landscaping" },
+                { label: "Gutter Cleaning", slug: "gutter-cleaning" },
+                { label: "Power Washing", slug: "power-washing" },
+                { label: "Green Waste Removal", slug: "green-waste-removal" },
+              ].map((service) => (
+                <Link
+                  key={service.slug}
+                  to={`/services/${service.slug}`}
+                  className="block transition-colors hover:text-[#7AB648]"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "0.82rem",
+                    color: "rgba(255,255,255,0.4)",
+                  }}
+                >
+                  {service.label}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -136,9 +152,9 @@ export function Footer() {
             </h4>
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "+1778 558 0447", href: "tel:+17785580447" },
-                { icon: Globe, label: "info@gogreenmowing.ca", href: "mailto:info@gogreenmowing.ca" },
-                { icon: MapPin, label: "South Surrey, BC" },
+                { icon: Phone, label: NAP.telephoneDisplay, href: `tel:${NAP.telephone}` },
+                { icon: Mail, label: NAP.email, href: `mailto:${NAP.email}` },
+                { icon: MapPin, label: NAP.full, href: MAP_URL },
                 { icon: Globe, label: "gogreenmowing.ca", href: "https://gogreenmowing.ca" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -151,6 +167,9 @@ export function Footer() {
                   {item.href ? (
                     <a
                       href={item.href}
+                      {...(item.icon === MapPin
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
                       className="transition-colors hover:text-white"
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
