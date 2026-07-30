@@ -176,11 +176,14 @@ export function ContactPage() {
                 ))}
               </div>
 
-              {/* Real Google Maps Embed */}
+              {/* Google Maps embed, pointed at the real street address.
+                  Keyless ?output=embed form, so there is no API key to leak. */}
               <div className="w-full h-56 overflow-hidden" style={{ border: "1px solid rgba(0,0,0,0.06)" }}>
                 <iframe
-                  title="Go Green Mowing Location - South Surrey, BC"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83327.67710867461!2d-122.84073!3d49.0345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485dc034d3fa75d%3A0xf00f3df6b5e1e8a4!2sSouth%20Surrey%2C%20Surrey%2C%20BC!5e0!3m2!1sen!2sca!4v1709000000000!5m2!1sen!2sca"
+                  title={`Map showing Go Green Mowing at ${NAP.full}`}
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                    `${NAP.streetAddress}, ${NAP.addressLocality}, ${NAP.addressRegion} ${NAP.postalCode}`,
+                  )}&z=14&output=embed`}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
